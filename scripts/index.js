@@ -1,4 +1,4 @@
-let secretNumber = Math.floor (Math.random() * 100) + 1 /* Esto crea un numero aleatorio del 1 al 100 */
+let secretNumber = Math.floor (Math.random() * 100) + 1 //Esto crea un numero aleatorio del 1 al 100 
 
 function startGame(){
 let number;
@@ -6,7 +6,7 @@ let intentos = 0;
 
 while (number != secretNumber){
     number = parseInt(prompt("Adivina el numero (del 1 al 100), intenta lograrlo con la menor cantidad de intentos"));
-    intentos++;
+    intentos++; //añade intentos
     if ( number < secretNumber)
         alert ("Demasiado bajo, prueba con uno mas alto")
     else if (number > secretNumber)
