@@ -1,0 +1,76 @@
+/* ESTILOS RESET */
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    color: inherit;
+}
+
+
+#body {
+    max-width: 2000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #4ea8de;
+    background: linear-gradient(to top, #7400b8, #6930c3, #5e60ce);
+    background-size: cover; /* Ajusta el tamaño del fondo */
+    background-repeat: no-repeat; /* Evita que se repita */
+    background-attachment: fixed; /* El fondo permanece fijo al desplazarse */
+    font-family: Arial, sans-serif;
+    height: 100vh;
+}
+
+
+#main {
+    width: 80%;
+    background: rgba(255 ,255 , 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+li {
+    display: inline-block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* INDEX */
+
+h1, h2, h3, h4 {
+    margin: 10px 0; 
+}
+
+.main__game-number{
+    margin-top: 20px;
+}
+.subrayado{
+    text-decoration: underline;
+}
+
+/* Boton de startGame */
+
+#game-number{
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4ea8de;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: backgraund-color 0.3s;
+}
+
+#game-number:hover{
+    background-color: #3b89b6;
+}
+
