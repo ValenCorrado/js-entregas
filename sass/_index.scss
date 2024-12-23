@@ -1,5 +1,5 @@
 /* ESTILOS RESET */
-*{
+* {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -9,7 +9,6 @@
     color: inherit;
 }
 
-
 #body {
     max-width: 2000px;
     display: flex;
@@ -17,22 +16,145 @@
     align-items: center;
     justify-content: center;
     color: #4ea8de;
-    background: linear-gradient(to top, #7400b8, #6930c3, #5e60ce);
-    background-size: cover; /* Ajusta el tamaño del fondo */
-    background-repeat: no-repeat; /* Evita que se repita */
-    background-attachment: fixed; /* El fondo permanece fijo al desplazarse */
+    background: linear-gradient(to top, #7400b8, #6930c3, #5e60ce); //Mejorar
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: Arial, sans-serif;
     height: 100vh;
 }
 
-
 #main {
     width: 80%;
-    background: rgba(255 ,255 , 255, 0.8);
+    background: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+}
+
+#main h1,
+#main h2,
+#main h3,
+#main h4 {
+    margin: 10px 0;
+}
+
+.main__game-number {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width : 75%;
+    background-color: #f9f9f9;/* color fondo tablero */
+}
+
+.subrayado {
+    text-decoration: underline;
+}
+
+#game-number {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4ea8de;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#game-number:hover {
+    background-color: #3b89b6;
+}
+
+#mensaje {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    flex: 1 1 auto;
+    /* Permite que el tamaño de la caja se ajuste automáticamente al contenido */
+}
+
+#mensaje.fallo { //Mejorar
+    color: red;
+}
+
+#mensaje.exito { //Mejorar
+    color: green;
+}
+
+#mensaje.raro { //Mejorar
+    color: rgb(0, 0, 0);
+    background-color: rgb(164, 8, 211);
+    border-color: rgb(0, 0, 0);
+}
+
+#mensaje.advertencia { //Mejorar
+    color: black;
+    background-color: rgba(255, 255, 0, 0.596);
+    border-color: black;
+}
+
+#historial {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;/* color fondo tablero */
+}
+
+#historial h2, ul, li {
+    border: 2px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    flex: 1 1 auto;
+    /* Permite que el tamaño de la caja se ajuste automáticamente al contenido */
+}
+
+#historial h2 {
+    margin-bottom: 10px;
+
+}
+
+#historial ul {
+    padding-left: 20px;
+}
+
+#historial li {
+    margin-bottom: 5px;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4ea8de;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #3b89b6;
 }
 
 li {
@@ -43,34 +165,3 @@ a {
     text-decoration: none;
     color: inherit;
 }
-
-/* INDEX */
-
-h1, h2, h3, h4 {
-    margin: 10px 0; 
-}
-
-.main__game-number{
-    margin-top: 20px;
-}
-.subrayado{
-    text-decoration: underline;
-}
-
-/* Boton de startGame */
-
-#game-number{
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #4ea8de;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: backgraund-color 0.3s;
-}
-
-#game-number:hover{
-    background-color: #3b89b6;
-}
-
