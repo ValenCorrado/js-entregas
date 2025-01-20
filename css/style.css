@@ -16,8 +16,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #4ea8de;
-  background: linear-gradient(135deg, #7400b8, #6930c3, #5e60ce); /* Mejora del ángulo del fondo */
+  color: #2c3e50;
+  background: radial-gradient(circle, #3498db, #1abc9c); /* Mejora del ángulo del fondo */
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -26,11 +26,11 @@
 }
 
 #main {
-  width: 80%;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 20px;
+  width: 75%;
+  background: #d6eaf8;
+  padding: 10px 0px 10px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -46,6 +46,8 @@
 }
 
 .main__game-number {
+  width: 100%;
+  max-width: 75%;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -53,8 +55,8 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  max-width: 75%;
-  background-color: #f9f9f9; /* color fondo tablero */
+  background-color: #d6eaf8;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 10px;
 }
 
 .subrayado {
@@ -64,17 +66,17 @@
 #game-number {
   padding: 10px 20px;
   font-size: 16px;
-  color: #fff;
-  background-color: #4ea8de;
+  color: #2c3e50;
+  background-color: #27ae60;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.5s;
 }
 
 #game-number:hover {
-  background-color: #3b89b6;
-  transform: scale(1.05); /* Efecto de ampliación al pasar el mouse */
+  background-color: rgba(39, 174, 95, 0.5058823529);
+  transform: scale(1.1); /* Efecto de ampliación al pasar el mouse */
 }
 
 #mensaje {
@@ -90,26 +92,23 @@
 }
 
 #mensaje.fallo { /* Mejora */
-  color: red;
+  color: rgba(255, 0, 0, 0.733);
 }
 
 #mensaje.exito { /* Mejora */
-  color: green;
+  color: rgba(0, 128, 0, 0.733);
 }
 
 #mensaje.raro { /* Mejora */
-  color: rgb(0, 0, 0);
-  background-color: rgb(164, 8, 211);
-  border-color: rgb(0, 0, 0);
+  color: rgba(255, 166, 0, 0.733);
 }
 
 #mensaje.advertencia { /* Mejora */
-  color: black;
-  background-color: rgba(255, 255, 0, 0.596);
-  border-color: black;
+  color: rgba(255, 255, 0, 0.733);
 }
 
 #historial {
+  max-width: 75%;
   margin-top: 20px;
   text-align: center;
   display: flex;
@@ -118,7 +117,8 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9; /* color fondo tablero */
+  background-color: #d4efdf; /* color fondo tablero */
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 10px;
 }
 
 #historial h2, ul, li {
@@ -142,17 +142,18 @@
 }
 
 #records {
-  max-width: 80%;
+  max-width: 75%;
+  text-align: center;
   margin: 20px auto;
-  background: rgba(255, 255, 255, 0.9);
+  background: #d6eaf8;
   border: 1px solid #ccc;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 10px;
   padding: 20px;
 }
 
 #records h2 {
-  color: #4ea8de;
+  color: #2c3e50;
 }
 
 button {

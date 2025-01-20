@@ -152,7 +152,7 @@ let juego = {
             <ul>
                 ${records.map(record => `
                     <li>
-                        ${record.nombre}: ${record.menorIntentos} intentos (mejor)
+                        ${record.nombre}: Lo encontro en solo ${record.menorIntentos} intentos
                         <button onclick="juego.mostrarEstadisticas('${record.nombre}')"><i class="fas fa-info-circle"></i></button>
                         <button onclick="juego.confirmarEliminar('${record.nombre}')"><i class="fas fa-trash-alt"></i></button>
                     </li>`).join('')}
