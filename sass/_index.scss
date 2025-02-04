@@ -139,6 +139,22 @@ select {
     }
 }
 
+.main__game-number {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: $caja-color;
+    box-shadow: 0 0 10px $sombra-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente */
+    justify-content: center; /* Centrar verticalmente */
+}
+
+
 #mensaje {
     margin: 10px 0;
     font-size: $font-size-h3;
@@ -180,6 +196,10 @@ select {
     border-radius: $border-radius;
     background-color: lighten($caja-color, 10%);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar horizontalmente */
+    justify-content: center;
 
     ul {
         list-style: none;
