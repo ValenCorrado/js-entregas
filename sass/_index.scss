@@ -1,221 +1,235 @@
-/* ESTILOS RESET */
-* {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-align: center;
-    text-decoration: none;
-    box-sizing: border-box;
-    color: inherit;
-}
-
+/* Variables */
 $color-letra: #2c3e50;
 $color-start: #3498db;
 $color-end: #1abc9c;
 $caja-color: #d6eaf8;
 $sombra-color: rgba(0, 0, 0, 0.25);
+$color-boton: #4ea8de;
+$color-boton-hover: #3b8bbf;
+$color-boton-cancel: #d33;
+$color-boton-cancel-hover: #b02a2a;
+$font-family: 'Arial', sans-serif;
+$font-size-base: 16px;
+$font-size-h1: 2.5rem;
+$font-size-h2: 2rem;
+$font-size-h3: 1.5rem;
+$font-size-h4: 1.25rem;
+$padding-base: 20px;
+$border-radius: 10px;
+$transition: all 0.3s ease;
 
-#body {
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: $color-letra;
-    background: radial-gradient(circle, $color-start, $color-end); /* Mejora del ángulo del fondo */
+    background: radial-gradient(circle, $color-start, $color-end);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    font-family: Arial, sans-serif;
+    font-family: $font-family;
+    font-size: $font-size-base;
     height: 100vh;
+    padding: $padding-base;
 }
 
-#main {
-    width: 75%;
-    background: $caja-color;
-    padding: 10px 0px 10px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px $sombra-color;
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: $padding-base;
+    background-color: $caja-color;
+    box-shadow: 0 0 10px $sombra-color;
+    border-radius: $border-radius;
     text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
 }
 
-#main h1,
-#main h2,
-#main h3,
-#main h4 {
+h1, h2, h3, h4 {
     margin: 10px 0;
+    font-family: $font-family;
 }
 
-.main__game-number {
-    width: 100%;
-    max-width : 75%;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: $caja-color;
-    box-shadow: $sombra-color 0px 4px 10px;
+h1 {
+    font-size: $font-size-h1;
 }
 
-.subrayado {
-    text-decoration: underline;
+h2 {
+    font-size: $font-size-h2;
 }
 
-#game-number {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: $color-letra;
-    background-color: #27ae60;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.5s;
+h3 {
+    font-size: $font-size-h3;
 }
 
-#game-number:hover {
-    background-color: #27ae5f81;
-    transform: scale(1.10); /* Efecto de ampliación al pasar el mouse */
-}
-
-#mensaje {
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    border: 2px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    flex: 1 1 auto; /* Permite que el tamaño de la caja se ajuste automáticamente al contenido */
-    transition: all 0.3s ease-in-out; /* Efectos de transición para los mensajes */
-}
-
-#mensaje.fallo { /* Mejora */
-    color: rgba(255, 0, 0, 0.733);
-}
-
-#mensaje.exito { /* Mejora */
-    color: rgba(0, 128, 0, 0.733);
-}
-
-#mensaje.raro { /* Mejora */
-    color:  rgba(255, 166, 0, 0.733);
-}
-
-#mensaje.advertencia { /* Mejora */
-    color: rgba(255, 255, 0, 0.733);
-}
-
-#historial {
-    max-width: 75%;
-    margin-top: 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #d4efdf; /* color fondo tablero */
-    box-shadow: $sombra-color 0px 4px 10px;
-}
-
-#historial h2, ul, li {
-    border: 2px;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    flex: 1 1 auto; /* Permite que el tamaño de la caja se ajuste automáticamente al contenido */
-}
-
-#historial h2 {
-    margin-bottom: 10px;
-}
-
-#historial ul {
-    padding-left: 20px;
-}
-
-#historial li {
-    margin-bottom: 5px;
-}
-
-#records {
-    max-width: 75%;
-    text-align: center;
-    margin: 20px auto;
-    background: #d6eaf8;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: $sombra-color 0px 4px 10px;
-    padding: 20px;
-}
-
-#records h2 {
-    color: $color-letra;
+h4 {
+    font-size: $font-size-h4;
 }
 
 button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
+    background-color: $color-boton;
     color: #fff;
-    background-color: #4ea8de;
     border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
+    border-radius: $border-radius;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
+    font-size: $font-size-base;
+    transition: $transition;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 
-button:hover {
-    background-color: #3b89b6;
-}
+    &:hover {
+        background-color: $color-boton-hover;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
 
-li {
-    display: inline-block;
-}
+    &.cancel {
+        background-color: $color-boton-cancel;
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-a:hover {
-    color: #ff6347; /* Cambia el color al pasar el mouse */
+        &:hover {
+            background-color: $color-boton-cancel-hover;
+        }
+    }
 }
 
 input[type="number"] {
     padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
+    border: 1px solid $color-letra;
+    border-radius: $border-radius;
+    font-size: $font-size-base;
+    margin: 10px 0;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: $transition;
 
-input[type="number"]:focus {
-    border-color: #4ea8de;
-    outline: none;
-    box-shadow: 0 0 5px rgba(78, 168, 222, 0.5);
+    &:focus {
+        border-color: $color-boton;
+        outline: none;
+        box-shadow: 0 0 5px rgba(78, 168, 222, 0.5);
+    }
 }
 
 select {
     padding: 10px;
     margin-top: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: $border-radius;
+    font-size: $font-size-base;
     background-color: #fff;
-    color: #4ea8de;
+    color: $color-boton;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: $transition;
+
+    &:focus {
+        border-color: $color-boton;
+        outline: none;
+        box-shadow: 0 0 5px rgba(78, 168, 222, 0.5);
+    }
 }
 
-select:focus {
-    border-color: #4ea8de;
-    outline: none;
-    box-shadow: 0 0 5px rgba(78, 168, 222, 0.5);
+#mensaje {
+    margin: 10px 0;
+    font-size: $font-size-h3;
+    padding: 10px;
+    border-radius: $border-radius;
+    background-color: lighten($caja-color, 10%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#historial {
+    margin: 20px 0;
+    text-align: left;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    border-radius: $border-radius;
+    background-color: lighten($caja-color, 10%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    ul {
+        list-style: none;
+        padding-left: 0; /* Asegura que las listas estén alineadas */
+    }
+
+    li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 5px 0;
+    }
+}
+
+#records {
+    margin: 20px 0;
+    text-align: left;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    border-radius: $border-radius;
+    background-color: lighten($caja-color, 10%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    ul {
+        list-style: none;
+    }
+
+    li {
+        margin: 5px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+            margin-left: 10px;
+        }
+    }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    h4 {
+        font-size: 1rem;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    input[type="number"] {
+        padding: 8px;
+        font-size: 14px;
+    }
 }

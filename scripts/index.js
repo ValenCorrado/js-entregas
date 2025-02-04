@@ -1,3 +1,4 @@
+// Inicializar el juego
 let juego = {
     numeroSecreto: null,
     intentos: 0,
@@ -6,6 +7,11 @@ let juego = {
 
     // Función para iniciar el juego
     iniciar: function () {
+        // Cargar usuarios de prueba en localStorage si no existen
+        if (!localStorage.getItem('records')) {
+            localStorage.setItem('records', JSON.stringify(usuarios));
+        }
+
         Swal.fire({
             title: 'Ingresa tu nombre:',
             input: 'text',
@@ -50,7 +56,7 @@ let juego = {
                 this.historialIntentos = [];
                 document.querySelector(".main__game-number").innerHTML = `
                     <h3>${nombreJugador}, estoy pensando en un número entre 1 y 100...</h3>
-                    <input type="number" id="adivinanza" min="1" max="100" placeholder="Ingresa tu adivinanza">
+                    <input type="number" id="adivinanza" min="1" max="100" placeholder="Ingresa tu adivinanza" oninput="this.value = Math.max(1, Math.min(100, this.value))">
                     <button id="btn-adivinar">Adivinar</button>
                     <p id="mensaje"></p>
                     <div id="historial"></div>
@@ -98,25 +104,24 @@ let juego = {
         }
 
         this.intentos++;
-        this.historialIntentos.push(adivinanzaUsuario);
+        this.historialIntentos = [...this.historialIntentos, adivinanzaUsuario]; // Usando spread operator
         this.jugadorActual.intentos++;
 
         // Comparar la adivinanza con el número secreto
-        if (adivinanzaUsuario <= 0 || adivinanzaUsuario > 100) {
-            mensaje.textContent = `Que raro, el número ${adivinanzaUsuario} no lo conozco. Mejor intenta uno del 1 al 100.`;
-            mensaje.className = "raro";
-        } else if (adivinanzaUsuario === this.numeroSecreto) {
-            mensaje.textContent = `¡Felicidades, ${this.jugadorActual.nombre}! Adivinaste el número en ${this.intentos} intentos. El número era ${this.numeroSecreto}.`;
-            mensaje.className = "exito";
+        mensaje.textContent = adivinanzaUsuario <= 0 || adivinanzaUsuario > 100
+            ? `Que raro, el número ${adivinanzaUsuario} no lo conozco. Mejor intenta uno del 1 al 100.`
+            : adivinanzaUsuario === this.numeroSecreto
+                ? `¡Felicidades, ${this.jugadorActual.nombre}! Adivinaste el número en ${this.intentos} intentos. El número era ${this.numeroSecreto}.`
+                : adivinanzaUsuario < this.numeroSecreto
+                    ? "Demasiado bajo, prueba con uno más alto."
+                    : "Demasiado alto, prueba con uno más bajo.";
+
+        mensaje.className = adivinanzaUsuario === this.numeroSecreto ? "exito" : adivinanzaUsuario <= 0 || adivinanzaUsuario > 100 ? "raro" : "fallo";
+
+        if (adivinanzaUsuario === this.numeroSecreto) {
             this.jugadorActual.adivinanzasCorrectas++;
             this.jugadorActual.menorIntentos = Math.min(this.jugadorActual.menorIntentos, this.intentos);
             this.registrarRecord(); // Registrar el récord del jugador
-        } else if (adivinanzaUsuario < this.numeroSecreto) {
-            mensaje.textContent = "Demasiado bajo, prueba con uno más alto.";
-            mensaje.className = "fallo";
-        } else {
-            mensaje.textContent = "Demasiado alto, prueba con uno más bajo.";
-            mensaje.className = "fallo";
         }
 
         this.actualizarHistorial();
@@ -126,7 +131,11 @@ let juego = {
     // Función para actualizar el historial de intentos
     actualizarHistorial: function () {
         const historial = document.getElementById("historial");
-        historial.innerHTML = `<h2>Historial de Intentos</h2><ul>${this.historialIntentos.slice().reverse().map((intent, index) => `<li>Intento n°${this.historialIntentos.length - index}: ${intent}</li>`).join('')}</ul>`;
+        historial.innerHTML = `
+            <h2>Historial de Intentos</h2>
+            <ul>
+                ${this.historialIntentos.slice().reverse().map((intent, index) => `<li>Intento n°${this.historialIntentos.length - index}: ${intent}</li>`).join('')}
+            </ul>`;
     },
 
     // Función para registrar los récords de los jugadores
@@ -152,7 +161,7 @@ let juego = {
             <ul>
                 ${records.map(record => `
                     <li>
-                        ${record.nombre}: Lo encontro en solo ${record.menorIntentos} intentos
+                        ${record.nombre}: Lo encontró en solo ${record.menorIntentos} intentos
                         <button onclick="juego.mostrarEstadisticas('${record.nombre}')"><i class="fas fa-info-circle"></i></button>
                         <button onclick="juego.confirmarEliminar('${record.nombre}')"><i class="fas fa-trash-alt"></i></button>
                     </li>`).join('')}
@@ -186,8 +195,8 @@ let juego = {
             cancelButtonColor: '#3085d6',
             confirmButtonText: 'Sí, eliminar',
             cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
+        }).then(({ isConfirmed }) => {
+            if (isConfirmed) {
                 this.eliminarJugador(nombre);
                 Swal.fire({
                     icon: 'success',
@@ -202,7 +211,7 @@ let juego = {
     // Función para eliminar un jugador del historial
     eliminarJugador: function (nombre) {
         let records = JSON.parse(localStorage.getItem('records')) || [];
-        records = records.filter(record => record.nombre !== nombre);
+        records = records.filter(({ nombre: recordNombre }) => recordNombre !== nombre);
         localStorage.setItem('records', JSON.stringify(records));
         this.mostrarRecords();
     },
@@ -231,12 +240,33 @@ let juego = {
 
         // Detectar eventos de usuario
         document.getElementById("btn-adivinar").addEventListener("click", () => this.verificarAdivinanza());
+        document.getElementById("adivinanza").addEventListener("keypress", (event) => {
+            if (event.key === 'Enter') {
+                this.verificarAdivinanza();
+            }
+        });
         document.getElementById("btn-reiniciar").addEventListener("click", () => this.reiniciar());
-        document.getElementById("btn-volver-a-jugar").addEventListener("click", () => this.volverAJugar());
+        document.getElementById("btn-volver-a-jugar").addEventListener("click", () => {
+            this.volverAJugar();
+            // Mostrar notificación con Toastify
+            Toastify({
+                text: "¡Se ha generado un nuevo número!",
+                duration: 3000,
+                gravity: "top", // `top` o `bottom`
+                position: "right", // `left`, `center` o `right`
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                stopOnFocus: true, // Evita que se descarte el Toastify al pasar el mouse
+            }).showToast();
+        });
+    },
+
+    // Añade un evento de clic para iniciar el juego
+    agregarEventoInicio: function () {
+        document.getElementById('game-number').addEventListener('click', () => this.iniciar());
     }
 };
 
 // Añadir un evento de clic para iniciar el juego
-document.getElementById('game-number').addEventListener('click', function () {
-    juego.iniciar();
+document.addEventListener('DOMContentLoaded', () => {
+    juego.agregarEventoInicio();
 });
