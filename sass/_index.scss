@@ -32,7 +32,7 @@ body {
     align-items: center;
     justify-content: center;
     color: $color-letra;
-    background: radial-gradient(circle, $color-start, $color-end);
+    background: radial-gradient(circle, $color-start, $color-end); 
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -40,10 +40,11 @@ body {
     font-size: $font-size-base;
     height: 100vh;
     padding: $padding-base;
+    overflow: hidden; // Evitar scroll en el body
 }
 
 main {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: $padding-base;
     background-color: $caja-color;
@@ -54,6 +55,9 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: auto; // Permitir scroll interno
+    max-height: 90vh; // Limitar la altura máxima
+    scrollbar-width: none;
 }
 
 h1, h2, h3, h4 {
@@ -173,6 +177,8 @@ select {
     border-radius: $border-radius;
     background-color: lighten($caja-color, 10%);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 200px; // Limitar la altura máxima
+    overflow-y: auto; // Permitir scroll interno
 
     ul {
         list-style: none;
@@ -196,6 +202,8 @@ select {
     border-radius: $border-radius;
     background-color: lighten($caja-color, 10%);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 200px; // Limitar la altura máxima
+    overflow-y: auto; // Permitir scroll interno
     display: flex;
     flex-direction: column;
     align-items: center; /* Centrar horizontalmente */

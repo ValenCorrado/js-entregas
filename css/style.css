@@ -22,10 +22,11 @@ body {
   font-size: 16px;
   height: 100vh;
   padding: 20px;
+  overflow: hidden;
 }
 
 main {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
   background-color: #d6eaf8;
@@ -36,6 +37,9 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: auto;
+  max-height: 90vh;
+  scrollbar-width: none;
 }
 
 h1, h2, h3, h4 {
@@ -149,6 +153,8 @@ select:focus {
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
 }
 #historial ul {
   list-style: none;
@@ -170,6 +176,8 @@ select:focus {
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center; /* Centrar horizontalmente */

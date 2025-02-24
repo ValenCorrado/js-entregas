@@ -1,4 +1,5 @@
 // Inicializar el juego
+let usuarios = []; 
 let juego = {
     numeroSecreto: null,
     intentos: 0,
@@ -54,14 +55,21 @@ let juego = {
                 this.numeroSecreto = Math.floor(Math.random() * 100) + 1;
                 this.intentos = 0;
                 this.historialIntentos = [];
-                document.querySelector(".main__game-number").innerHTML = `
+                
+                // Vaciar el contenedor antes de agregar el nuevo contenido
+                const gameNumberContainer = document.querySelector(".main__game-number");
+                gameNumberContainer.innerHTML = '';
+
+                gameNumberContainer.innerHTML = `
                     <h3>${nombreJugador}, estoy pensando en un número entre 1 y 100...</h3>
                     <input type="number" id="adivinanza" min="1" max="100" placeholder="Ingresa tu adivinanza" oninput="this.value = Math.max(1, Math.min(100, this.value))">
                     <button id="btn-adivinar">Adivinar</button>
                     <p id="mensaje"></p>
+                    <h2>Historial de Intentos</h2>
                     <div id="historial"></div>
                     <button id="btn-reiniciar">Reiniciar</button>
                     <button id="btn-volver-a-jugar">Volver a Jugar</button>
+                    <h2>Récords de Jugadores</h2>
                     <div id="records"></div>
                 `;
                 this.mostrarRecords(); // Mostrar los récords en todo momento
@@ -132,7 +140,6 @@ let juego = {
     actualizarHistorial: function () {
         const historial = document.getElementById("historial");
         historial.innerHTML = `
-            <h2>Historial de Intentos</h2>
             <ul>
                 ${this.historialIntentos.slice().reverse().map((intent, index) => `<li>Intento n°${this.historialIntentos.length - index}: ${intent}</li>`).join('')}
             </ul>`;
@@ -157,9 +164,8 @@ let juego = {
         let records = JSON.parse(localStorage.getItem('records')) || [];
         const recordsDiv = document.getElementById("records");
         recordsDiv.innerHTML = `
-            <h2>Récords de Jugadores</h2>
             <ul>
-                ${records.map(record => `
+                ${records.filter(record => record.nombre && record.menorIntentos !== Infinity).map(record => `
                     <li>
                         ${record.nombre}: Lo encontró en solo ${record.menorIntentos} intentos
                         <button onclick="juego.mostrarEstadisticas('${record.nombre}')"><i class="fas fa-info-circle"></i></button>
