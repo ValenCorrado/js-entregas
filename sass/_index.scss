@@ -177,7 +177,7 @@ select {
     border-radius: $border-radius;
     background-color: lighten($caja-color, 10%);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-height: 200px; // Limitar la altura máxima
+    max-height: 100px; // Limitar la altura máxima
     overflow-y: auto; // Permitir scroll interno
 
     ul {
